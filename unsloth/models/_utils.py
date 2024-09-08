@@ -576,7 +576,7 @@ if Version(peft_version) < Version("0.12.0"):
         spaces = len(re.match(r"[\s]{1,}", source).group(0))
         lines = source.split("\n")
         source = "\n".join(x[spaces:] for x in lines)
-        source = re.sub("([^\.])nn\.", r"\1torch.nn.", source)
+        source = re.sub(r"([^\.])nn\.", r"\1torch.nn.", source)
         source = source.replace("def update_layer", "def LoraLayer_update_layer")
         exec(source, globals())
 
